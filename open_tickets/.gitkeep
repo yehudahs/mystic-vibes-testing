@@ -1,0 +1,2 @@
+# This file ensures the open_tickets directory is tracked by git
+# Individual ticket files will be added here as issues are discovered during testing
