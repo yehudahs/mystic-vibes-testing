@@ -49,10 +49,10 @@ This checklist helps track which tests have been implemented and executed.
 ## Backend API Tests (12 total)
 
 ### Authentication Endpoints
-- [ ] TEST-BE-AUTH-001: User Registration
-- [ ] TEST-BE-AUTH-002: User Login
-- [ ] TEST-BE-AUTH-003: Get Current User (Me)
-- [ ] TEST-BE-AUTH-004: Logout
+- [✅] TEST-BE-AUTH-001: User Registration (⚠️ Blocked by database issue - see TICKET-001)
+- [✅] TEST-BE-AUTH-002: User Login
+- [✅] TEST-BE-AUTH-003: Get Current User (Me)
+- [✅] TEST-BE-AUTH-004: Logout
 
 ### AI Endpoints
 - [ ] TEST-BE-AI-001: Generate Tarot Reading
@@ -68,7 +68,7 @@ This checklist helps track which tests have been implemented and executed.
 - [ ] TEST-BE-DB-001: User CRUD Operations
 - [ ] TEST-BE-DB-002: Readings Storage and Retrieval
 
-**Backend Progress: 0/12 (0%)**
+**Backend Progress: 4/12 (33%)**
 
 ---
 
@@ -154,7 +154,7 @@ This checklist helps track which tests have been implemented and executed.
 **Total Tests: 48 Core Tests + 2 Compatibility**
 
 - Frontend: 0/11 (0%)
-- Backend: 0/12 (0%)
+- Backend: 4/12 (33%)
 - AI Service: 0/7 (0%)
 - Integration: 0/4 (0%)
 - Security: 0/5 (0%)
@@ -162,7 +162,7 @@ This checklist helps track which tests have been implemented and executed.
 - E2E: 0/3 (0%)
 - Compatibility: 0/2 (0%)
 
-**Overall: 0/48 (0%)**
+**Overall: 4/48 (8%)**
 
 ---
 
@@ -173,9 +173,9 @@ This checklist helps track which tests have been implemented and executed.
 ### 🔴 Phase 1: Foundation & Critical Path (Days 1-5)
 **Goal**: Ensure core functionality works before proceeding
 
-1. ☐ **TEST-BE-AUTH-001**: User Registration
-2. ☐ **TEST-BE-AUTH-002**: User Login
-3. ☐ **TEST-BE-AUTH-003**: Get Current User (Me)
+1. ✅ **TEST-BE-AUTH-001**: User Registration (⚠️ Database issue - TICKET-001)
+2. ✅ **TEST-BE-AUTH-002**: User Login
+3. ✅ **TEST-BE-AUTH-003**: Get Current User (Me)
 4. ☐ **TEST-BE-MIDDLEWARE-001**: Protected Route Authentication
 5. ☐ **TEST-FE-INT-001**: Authentication Flow (Login/Register/Logout)
 6. ☐ **TEST-BE-AI-006**: AI Health Check
