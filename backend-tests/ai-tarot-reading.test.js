@@ -146,7 +146,7 @@ describe('TEST-BE-AI-001: Generate Tarot Reading', () => {
 
     // Should require authentication
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 3: Should handle missing cards', async () => {
@@ -164,7 +164,7 @@ describe('TEST-BE-AI-001: Generate Tarot Reading', () => {
 
     // Should return error for missing cards
     expect([400, 422]).toContain(response.status);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 4: Should handle empty cards array', async () => {

@@ -133,7 +133,7 @@ describe('TEST-BE-AUTH-004: User Logout', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 4: Should fail logout with invalid token', async () => {
@@ -144,7 +144,7 @@ describe('TEST-BE-AUTH-004: User Logout', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 5: Should fail logout with malformed token', async () => {
@@ -155,7 +155,7 @@ describe('TEST-BE-AUTH-004: User Logout', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 6: Should handle double logout gracefully', async () => {

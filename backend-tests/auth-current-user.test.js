@@ -97,7 +97,7 @@ describe('TEST-BE-AUTH-003: Get Current User (Me)', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 3: Should fail with invalid token', async () => {
@@ -109,7 +109,7 @@ describe('TEST-BE-AUTH-003: Get Current User (Me)', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 4: Should fail with malformed token', async () => {
@@ -120,7 +120,7 @@ describe('TEST-BE-AUTH-003: Get Current User (Me)', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 5: Should fail with empty token', async () => {
@@ -131,7 +131,7 @@ describe('TEST-BE-AUTH-003: Get Current User (Me)', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 6: Should not expose sensitive user data', async () => {

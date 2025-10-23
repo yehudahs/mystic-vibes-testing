@@ -83,16 +83,15 @@ describe('TEST-BE-AUTH-002: User Login', () => {
     const response = await api.login(loginData);
 
     // Assertions
-    assertStatus(response, 200);
-    assertAuthResponse(response.data);
-    
+    assertAuthResponse(response);
+
     expect(response.data.user).toBeDefined();
     expect(response.data.user.email).toBe(testUser.email);
     expect(response.data.user.name).toBe(testUser.name);
-    
+
     // Validate JWT token
     assertValidJWT(response.data.token);
-    
+
     // Store token for future tests
     api.setAuthToken(response.data.token);
   });
@@ -106,9 +105,8 @@ describe('TEST-BE-AUTH-002: User Login', () => {
     const response = await api.login(loginData);
 
     // Should return 401 Unauthorized
-    assertStatus(response, 401);
-    assertErrorResponse(response.data);
-    
+    assertErrorResponse(response, 401);
+
     expect(response.data.error).toBeDefined();
     expect(response.data.error.toLowerCase()).toContain('invalid');
   });
@@ -122,9 +120,8 @@ describe('TEST-BE-AUTH-002: User Login', () => {
     const response = await api.login(loginData);
 
     // Should return 401 Unauthorized
-    assertStatus(response, 401);
-    assertErrorResponse(response.data);
-    
+    assertErrorResponse(response, 401);
+
     expect(response.data.error).toBeDefined();
   });
 
@@ -137,7 +134,7 @@ describe('TEST-BE-AUTH-002: User Login', () => {
 
     // Should return 400 Bad Request
     expect([400, 401]).toContain(response.status);
-    assertErrorResponse(response.data);
+    expect(response.data).toHaveProperty('error');
   });
 
   test('Case 5: Should fail login with missing password', async () => {
@@ -149,7 +146,7 @@ describe('TEST-BE-AUTH-002: User Login', () => {
 
     // Should return 400 Bad Request
     expect([400, 401]).toContain(response.status);
-    assertErrorResponse(response.data);
+    expect(response.data).toHaveProperty('error');
   });
 
   test('Case 6: Should fail login with invalid email format', async () => {
@@ -162,7 +159,7 @@ describe('TEST-BE-AUTH-002: User Login', () => {
 
     // Should return 400 Bad Request or 401 Unauthorized
     expect([400, 401]).toContain(response.status);
-    assertErrorResponse(response.data);
+    expect(response.data).toHaveProperty('error');
   });
 
   test('Case 7: Should fail login with empty credentials', async () => {
@@ -175,7 +172,7 @@ describe('TEST-BE-AUTH-002: User Login', () => {
 
     // Should return 400 Bad Request
     expect([400, 401]).toContain(response.status);
-    assertErrorResponse(response.data);
+    expect(response.data).toHaveProperty('error');
   });
 
   test('Case 8: Should return proper error structure on failure', async () => {

@@ -86,7 +86,7 @@ describe('TEST-BE-MIDDLEWARE-001: Protected Route Authentication', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
     
     expect(response.data.error).toBeDefined();
     expect(typeof response.data.error).toBe('string');
@@ -100,7 +100,7 @@ describe('TEST-BE-MIDDLEWARE-001: Protected Route Authentication', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 4: Should block access with malformed token', async () => {
@@ -111,7 +111,7 @@ describe('TEST-BE-MIDDLEWARE-001: Protected Route Authentication', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 5: Should block access with empty token', async () => {
@@ -122,7 +122,7 @@ describe('TEST-BE-MIDDLEWARE-001: Protected Route Authentication', () => {
 
     // Should return 401 Unauthorized
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
   });
 
   test('Case 6: Should block access with missing Bearer prefix', async () => {
@@ -257,7 +257,7 @@ describe('TEST-BE-MIDDLEWARE-001: Protected Route Authentication', () => {
 
     // Should return 401 for expired token
     assertStatus(response, 401);
-    assertErrorResponse(response.data);
+    assertErrorResponse(response);
     
     // Error message should indicate token issue
     expect(response.data.error).toBeDefined();
