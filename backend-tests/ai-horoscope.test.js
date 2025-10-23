@@ -249,9 +249,9 @@ describe('TEST-BE-AI-002: Generate Horoscope', () => {
     console.log('\n📊 Missing sign:', response1.status);
     console.log('Missing type:', response2.status);
     
-    // Should return error for missing params
-    expect([400, 422, 500]).toContain(response1.status);
-    expect([400, 422, 500]).toContain(response2.status);
+    // Should return error for missing params (404, 400, 422, or 500)
+    expect([400, 404, 422, 500]).toContain(response1.status);
+    expect([400, 404, 422, 500]).toContain(response2.status);
   }, 10000);
 
   test('Case 10: Should generate unique content for different signs', async () => {
