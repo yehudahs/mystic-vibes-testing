@@ -304,23 +304,25 @@ If you're unsure whether something is a bug or expected behavior:
 
 Track metrics in this section:
 
-- **Total Tickets Opened**: 0
+- **Total Tickets Opened**: 1
 - **Currently Open**: 0
 - **In Progress**: 0
 - **Resolved (Awaiting Verification)**: 0
-- **Closed**: 0
-- **Average Resolution Time**: N/A
+- **Closed**: 1
+- **Average Resolution Time**: < 24 hours
+
+### Ticket History
+1. TICKET-001: Session Token Column Too Short - ⚫ Closed (Critical, 1 day)
 
 ---
 
 ## Archive
 
-Once tickets are closed and verified, they can be moved to `open_tickets/archive/` folder for historical reference.
+Once tickets are closed and verified, they can be moved to `../closed_tickets/` folder (sibling folder to open_tickets) for historical reference.
 
 ```bash
-# Move closed tickets to archive
-mkdir -p archive
-mv TICKET-XXX.md archive/
+# Move closed tickets to closed_tickets folder
+mv TICKET-XXX.md ../closed_tickets/
 ```
 
 ---

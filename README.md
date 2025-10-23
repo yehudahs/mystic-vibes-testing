@@ -63,11 +63,13 @@ mystic-vibes-testing/
 │   ├── ollama-tests/ (for implemented tests)
 │   ├── quality-tests/ (for implemented tests)
 │   └── annotation-tests/ (for implemented tests)
-└── open_tickets/
-    ├── README.md (ticket creation guide and examples)
-    ├── ISSUES_LOG.md (quick issue tracking)
-    ├── .gitkeep (ensures folder tracked in git)
-    └── [TICKET-XXX.md files created as issues are found]
+├── open_tickets/
+│   ├── README.md (ticket creation guide and examples)
+│   ├── ISSUES_LOG.md (quick issue tracking)
+│   ├── .gitkeep (ensures folder tracked in git)
+│   └── [TICKET-XXX.md files for open/in-progress issues]
+└── closed_tickets/
+    └── [TICKET-XXX.md files for verified closed issues]
 ```
 
 ## Test Categories
