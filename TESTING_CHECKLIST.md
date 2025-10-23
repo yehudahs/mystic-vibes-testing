@@ -39,10 +39,10 @@ This checklist helps track which tests have been implemented and executed.
 - [ ] TEST-FE-COMP-004: Numerology Form Validation
 
 ### Integration Tests
-- [ ] TEST-FE-INT-001: Authentication Flow (Login/Register/Logout)
+- [⚠️] TEST-FE-INT-001: Authentication Flow (Login/Register/Logout) (implemented, blocked by TICKET-002)
 - [ ] TEST-FE-INT-002: API Service Integration with Mock Responses
 
-**Frontend Progress: 4/11 (36%)**
+**Frontend Progress: 5/11 (45%)**
 
 ---
 
@@ -162,10 +162,11 @@ This checklist helps track which tests have been implemented and executed.
 - E2E: 0/3 (0%)
 - Compatibility: 0/2 (0%)
 
-**Overall: 12/48 implemented (25% implementation) | 122/156 tests passing (78% pass rate)**
+**Overall: 13/48 implemented (27% implementation) | 122/156 tests passing (78% pass rate)**
 
 **Key Blockers:**
-- 🔴 TICKET-002: Backend auth system failures (blocking 34 tests)
+- 🔴 TICKET-002: Backend auth system failures (blocking 34 backend tests + 10 frontend tests = 44 total)
+- 🔴 TICKET-004: Frontend auth flow tests blocked (waiting for TICKET-002 fix)
 - 🟡 TICKET-003: Weak password validation (security issue)
 - 🟡 TICKET-001: Session token column size (infrastructure)
 
@@ -182,7 +183,7 @@ This checklist helps track which tests have been implemented and executed.
 2. ⚠️ **TEST-BE-AUTH-002**: User Login (1/8 passing - TICKET-002)
 3. ⚠️ **TEST-BE-AUTH-003**: Get Current User (Me) (4/9 passing - TICKET-002)
 4. ⚠️ **TEST-BE-MIDDLEWARE-001**: Protected Route Authentication (5/12 passing - TICKET-002)
-5. ☐ **TEST-FE-INT-001**: Authentication Flow (Login/Register/Logout)
+5. ⚠️ **TEST-FE-INT-001**: Authentication Flow (Login/Register/Logout) (implemented, blocked by TICKET-002/004)
 6. ✅ **TEST-BE-AI-006**: AI Health Check (6/6 passing)
 7. ✅ **TEST-AI-PROXY-001**: Ollama Proxy Connection and Forwarding (7/7 passing)
 8. ⚠️ **TEST-BE-AI-001**: Generate Tarot Reading (2/11 passing - TICKET-002 blocks tests)
