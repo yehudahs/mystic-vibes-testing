@@ -36,7 +36,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["./jest.setup.js"],
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ],
     "transform": {},
     "testMatch": [
       "**/__tests__/**/*.test.js",
@@ -66,5 +68,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "jwt-decode": "^4.0.0"
   }
 }
