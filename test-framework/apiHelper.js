@@ -68,6 +68,13 @@ export class ApiHelper {
   }
 
   /**
+   * Alias for setToken
+   */
+  setAuthToken(token) {
+    this.setToken(token);
+  }
+
+  /**
    * Clear authentication token
    */
   clearToken() {
@@ -116,16 +123,31 @@ export class ApiHelper {
 
   /**
    * Auth Helper: Register user
+   * Accepts either (name, email, password) or ({name, email, password})
    */
-  async register(name, email, password) {
-    return this.post('/api/auth/register', { name, email, password });
+  async register(nameOrUser, email, password) {
+    // Handle both parameter styles
+    if (typeof nameOrUser === 'object') {
+      return this.post('/api/auth/register', nameOrUser);
+    } else {
+      return this.post('/api/auth/register', { name: nameOrUser, email, password });
+    }
   }
 
   /**
    * Auth Helper: Login user
+   * Accepts either (email, password) or ({email, password})
    */
-  async login(email, password) {
-    const response = await this.post('/api/auth/login', { email, password });
+  async login(emailOrCreds, password) {
+    // Handle both parameter styles
+    let credentials;
+    if (typeof emailOrCreds === 'object') {
+      credentials = emailOrCreds;
+    } else {
+      credentials = { email: emailOrCreds, password };
+    }
+    
+    const response = await this.post('/api/auth/login', credentials);
     if (response.status === 200 && response.data.token) {
       this.setToken(response.data.token);
     }
