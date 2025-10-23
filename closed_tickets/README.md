@@ -36,15 +36,25 @@ closed_tickets/TICKET-XXX.md (⚫ Closed)
 - **Commit**: `4f843c4`
 - **File**: `TICKET-001-session-token-column-too-short.md`
 
+### TICKET-002: Test Framework Assertion Parameter Error ⚫
+- **Priority**: High
+- **Component**: Testing Framework
+- **Date Opened**: 2025-10-23
+- **Date Closed**: 2025-10-23
+- **Resolution Time**: < 1 hour
+- **Summary**: Tests passing response.data instead of response to assertion functions, causing "response.status is undefined" errors that blocked 56 tests. Fixed by correcting assertion parameters in 5 test files.
+- **Commit**: `6a11f87`
+- **File**: `TICKET-002-test-assertion-parameter-error.md`
+
 ---
 
 ## Statistics
 
-- **Total Closed**: 1
-- **Average Resolution Time**: < 24 hours
+- **Total Closed**: 2
+- **Average Resolution Time**: < 12 hours
 - **By Priority**:
   - Critical: 1
-  - High: 0
+  - High: 1
   - Medium: 0
   - Low: 0
 

@@ -1,10 +1,12 @@
 # TICKET-002: Test Framework Assertion Functions Receiving Wrong Parameters
 
-**Status**: 🟢 Resolved
-**Priority**: High
+**Status**: ⚫ Closed
+**Priority**: High (was blocking 56 tests)
 **Opened By**: Test Engineer (Automated)
 **Date Opened**: 2025-10-23
-**Related Test(s)**: TEST-BE-AUTH-002, TEST-BE-AUTH-003, TEST-BE-AUTH-004, and many others
+**Date Closed**: 2025-10-23
+**Resolution Time**: < 1 hour
+**Related Test(s)**: TEST-BE-AUTH-002, TEST-BE-AUTH-003, TEST-BE-AUTH-004, TEST-BE-MIDDLEWARE-001, TEST-BE-AI-001
 
 ## Issue Description
 Multiple backend auth tests are failing with `response.status is undefined` errors. Investigation revealed that the test code is incorrectly passing `response.data` to assertion functions (`assertAuthResponse`, `assertErrorResponse`) that expect the full axios response object (with `.status` and `.data` properties).
@@ -116,7 +118,25 @@ This is a test framework issue, not a backend API issue. The API is working corr
 ## Resolution
 **Resolved By**: Claude Code
 **Date Resolved**: 2025-10-23
-**Fix Description**: Updated `auth-login.test.js` to pass full response objects to assertion functions instead of just response.data
-**Commit/PR**: (To be filled after commit)
-**Verified By**: (To be filled after verification)
-**Verification Date**: (To be filled after verification)
+**Fix Description**: Updated 5 test files to pass full response objects (with .status and .data properties) to assertion functions instead of just response.data
+
+**Files Fixed**:
+- backend-tests/auth-login.test.js
+- backend-tests/auth-current-user.test.js
+- backend-tests/auth-logout.test.js
+- backend-tests/middleware-auth.test.js
+- backend-tests/ai-tarot-reading.test.js
+
+**Commit**: `6a11f87` - Fix test framework: Pass response objects to assertions correctly
+**Branch**: develop
+**Verification**:
+- ✅ TEST-BE-AUTH-002 (Login): All 8/8 tests now pass
+- ✅ No more "response.status is undefined" errors
+- ⚠️ Uncovered real backend auth issues (separate tickets needed):
+  - Some auth endpoints returning 401 instead of expected 400
+  - Logout endpoint not properly protected (returns 200 when should be 401)
+
+**Impact**: This fix unblocked test execution and revealed actual backend issues that were previously masked by the test framework bug.
+
+**Verified By**: Test Engineer (Automated test runs)
+**Verification Date**: 2025-10-23
