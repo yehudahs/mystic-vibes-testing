@@ -1,0 +1,70 @@
+{
+  "name": "mystic-vibes-testing",
+  "version": "1.0.0",
+  "description": "Black-box testing suite for Mystic Vibes application",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:backend": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern=backend-tests",
+    "test:frontend": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern=frontend-tests",
+    "test:ai": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern=ai-service-tests",
+    "test:integration": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern=integration-tests",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:security": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern=security-tests",
+    "test:performance": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern=performance-tests",
+    "test:phase1": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPattern='(TEST-BE-AUTH|TEST-FE-INT-001|TEST-AI-PROXY|TEST-INT-001)'",
+    "report": "node test-framework/generate-report.js"
+  },
+  "keywords": [
+    "testing",
+    "black-box",
+    "api-testing",
+    "e2e-testing"
+  ],
+  "author": "Mystic Vibes Team",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/jest": "^29.5.11",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "jest": "^29.7.0",
+    "jest-html-reporter": "^3.10.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["./jest.setup.js"],
+    "transform": {},
+    "testMatch": [
+      "**/__tests__/**/*.test.js",
+      "**/backend-tests/**/*.test.js",
+      "**/frontend-tests/**/*.test.js",
+      "**/ai-service-tests/**/*.test.js",
+      "**/integration-tests/**/*.test.js",
+      "**/security-tests/**/*.test.js",
+      "**/performance-tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "test-framework/**/*.js"
+    ],
+    "coverageDirectory": "coverage",
+    "verbose": true,
+    "testTimeout": 30000,
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporter",
+        {
+          "pageTitle": "Mystic Vibes Test Report",
+          "outputPath": "test-results/test-report.html",
+          "includeFailureMsg": true,
+          "includeConsoleLog": true,
+          "dateFormat": "yyyy-mm-dd HH:MM:ss"
+        }
+      ]
+    ]
+  }
+}
