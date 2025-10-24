@@ -48,7 +48,8 @@
       "**/integration-tests/**/*.test.js",
       "**/security-tests/**/*.test.js",
       "**/performance-tests/**/*.test.js",
-      "**/e2e-tests/**/*.test.js"
+      "**/e2e-tests/**/*.test.js",
+      "**/compatibility-tests/**/*.test.js"
     ],
     "collectCoverageFrom": [
       "test-framework/**/*.js"
