@@ -47,7 +47,8 @@
       "**/ai-service-tests/**/*.test.js",
       "**/integration-tests/**/*.test.js",
       "**/security-tests/**/*.test.js",
-      "**/performance-tests/**/*.test.js"
+      "**/performance-tests/**/*.test.js",
+      "**/e2e-tests/**/*.test.js"
     ],
     "collectCoverageFrom": [
       "test-framework/**/*.js"
