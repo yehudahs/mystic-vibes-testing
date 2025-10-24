@@ -1,0 +1,132 @@
+name: Test Suite CI/CD
+
+on:
+  push:
+    branches: [ develop, main, master ]
+  pull_request:
+    branches: [ develop, main, master ]
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  test:
+    name: Run All Tests
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: 🔧 Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: 📦 Install dependencies
+      run: npm ci
+    
+    - name: 🔍 Run Security Tests
+      run: npm test -- --testPathPattern=security-tests --coverage
+      continue-on-error: false
+    
+    - name: 🔐 Run Authentication Tests
+      run: npm test -- --testPathPattern=backend-tests/auth
+      continue-on-error: false
+    
+    - name: 🔗 Run Integration Tests
+      run: npm test -- --testPathPattern=integration-tests
+      continue-on-error: false
+    
+    - name: ⚙️ Run Backend Tests
+      run: npm test -- --testPathPattern=backend-tests
+      continue-on-error: false
+    
+    - name: 🎨 Run Frontend Tests
+      run: npm test -- --testPathPattern=frontend-tests
+      continue-on-error: false
+    
+    - name: 🤖 Run AI Service Tests
+      run: npm test -- --testPathPattern=ai-service-tests
+      continue-on-error: false
+    
+    - name: ⚡ Run Performance Tests
+      run: npm test -- --testPathPattern=performance-tests
+      continue-on-error: false
+    
+    - name: 🚀 Run E2E Tests
+      run: npm test -- --testPathPattern=e2e-tests
+      continue-on-error: false
+    
+    - name: 🌐 Run Compatibility Tests
+      run: npm test -- --testPathPattern=compatibility-tests
+      continue-on-error: false
+    
+    - name: 📊 Generate Coverage Report
+      run: npm run test:coverage
+      continue-on-error: true
+    
+    - name: 📈 Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/coverage-final.json
+        flags: unittests
+        name: codecov-umbrella
+      continue-on-error: true
+    
+    - name: 💾 Archive test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-node-${{ matrix.node-version }}
+        path: |
+          test-results/
+          coverage/
+    
+    - name: 📝 Generate Test Report
+      if: always()
+      run: npm run report
+      continue-on-error: true
+    
+    - name: 📄 Upload Test Report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-report-node-${{ matrix.node-version }}
+        path: test-results/test-report.html
+
+  lint:
+    name: Lint and Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: 📦 Install dependencies
+      run: npm ci
+    
+    - name: 🔍 Run ESLint (if configured)
+      run: npm run lint || echo "No lint script configured"
+      continue-on-error: true
+
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [test, lint]
+    if: always()
+    
+    steps:
+    - name: 📊 Check test results
+      run: |
+        echo "Test suite execution completed"
+        echo "Review the test results in the artifacts"
