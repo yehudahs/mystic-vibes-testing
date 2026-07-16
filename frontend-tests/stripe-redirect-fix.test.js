@@ -55,7 +55,8 @@ describe('TEST-FE-STRIPE-002: Stripe checkout redirect fix', () => {
     const fnEnd = src.indexOf('upgradeSubscription:', fnStart)
     const fnBody = src.slice(fnStart, fnEnd > fnStart ? fnEnd : fnStart + 2000)
 
-    expect(fnBody).not.toContain('redirectToCheckout')
+    // Check actual call is gone (not just the word — comments mentioning the old API are OK)
+    expect(fnBody).not.toMatch(/stripeService\.redirectToCheckout\s*\(/)
     expect(fnBody).toContain('session.url')
     expect(fnBody).toContain('window.location.href')
     console.log('✅ createCheckoutSession uses window.location.href = session.url')
